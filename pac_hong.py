@@ -11,7 +11,18 @@ response = requests.get(
     proxies={'http': None, 'https': None}  # 如果开了vpn需要这行代码来禁用代理
 )
 
-print(response.text)
-
 with open('pac_hong.jpg', 'wb') as file:
     file.write(response.content)
+    
+header = {
+    'Referer': 'https://.scrape.center/',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36',
+}
+
+response = requests.get(
+    'https://ssr1.scrape.center/',
+    headers=header,
+    proxies={'http': None, 'https': None}  # 如果开了vpn需要这行代码来禁用代理
+)
+
+print(response.text)
