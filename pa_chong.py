@@ -1,13 +1,16 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+from tqdm import tqdm  # 导入 tqdm
 
 moive_info = {'电影名字': [], '类型': [], '国家': [], '时长': [], '上映时间': [], '电影评分': []}
 header = {
     'Referer': 'https://.scrape.center/',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36',
 }
-for page in range(1, 11):
+print('开始爬取')
+
+for page in tqdm(range(1, 11), desc='爬取进度'):  # 使用 tqdm 包裹 range
     response = requests.get(
         'https://ssr1.scrape.center/page/%d' %page,
         headers=header,
